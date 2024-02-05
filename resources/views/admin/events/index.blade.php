@@ -14,8 +14,15 @@
                                 <div class="card-footer mb-3">
                                     <small class="text-body-secondary">Data: {{$event->date}}</small>
                                   </div>
-                                  <a href="#" class="btn btn-primary">Scopri di piú</a>
+                                 
                             </div>
+                            <a href="{{ route('admin.events.show', $event->id) }}" class="btn btn-primary">Dettagli</a>
+                            <a href="{{ route('admin.events.edit', $event->id) }}" class="btn btn-warning">Modifica</a>
+                            <form action="{{ route('admin.events.destroy',$event->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <input type="submit" value="Cancella" class="btn btn-danger">
+                            </form>
                         </div>
                     </div>
                 @endforeach
