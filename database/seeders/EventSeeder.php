@@ -62,9 +62,9 @@ class EventSeeder extends Seeder
             ],
         ];
         foreach ($eventi as $evento) {
-            $Newevento = new Event();
-            $Newevento->fill($evento);
-            $Newevento->save(); 
+            $NewEvento = new Event();
+            $NewEvento->fill($evento);
+            $NewEvento->save(); 
 
         }
     }
