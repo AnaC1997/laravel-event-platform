@@ -6,6 +6,7 @@ use App\Http\Requests\StoreEventRequest;
 use App\Http\Requests\UpdateEventRequest;
 use App\Models\Event;
 
+
 class EventController extends Controller
 {
     /**
@@ -53,7 +54,7 @@ class EventController extends Controller
      */
     public function edit(Event $event)
     {
-        //
+        return view("admin.events.edit", compact("event"));
     }
 
     /**
@@ -61,7 +62,12 @@ class EventController extends Controller
      */
     public function update(UpdateEventRequest $request, Event $event)
     {
-        //
+        $data = $request->all();
+        $dati_validati =  new Event();
+        $dati_validati->fill($data);
+        $event->update($data);
+
+        return redirect()->route("admin.events.index", $event->id);
     }
 
     /**
