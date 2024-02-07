@@ -20,6 +20,7 @@ class EventSeeder extends Seeder
                 'available_tickets' => 150,
                 'description' => 'Un fantastico concerto dal vivo con artisti internazionali.',
                 'img' => 'https://st.ilfattoquotidiano.it/wp-content/uploads/2020/04/14/concerti1200-690x362.jpg',
+                'user_id' =>4, 
                
             ],
             [
@@ -36,6 +37,7 @@ class EventSeeder extends Seeder
                 'available_tickets' => 100,
                 'description' => 'Una conferenza tecnologica con esperti di settore.',
                 'img' => 'https://media-assets.wired.it/photos/6556714bbcbcfdf67854c8ab/16:9/w_1280,c_limit/web%20summit%20finale.jpg',
+                'user_id' =>3, 
             ],
             [
                 'name' => 'Mostra d\'Arte',
@@ -43,7 +45,7 @@ class EventSeeder extends Seeder
                 'available_tickets' => 120,
                 'description' => 'Una mostra d\'arte con opere di artisti emergenti e affermati.',
                 'img' => 'https://www.artribune.com/wp-content/uploads/2022/04/1-Pde_PIRELLI.jpg',
-                
+                'user_id' =>2, 
             ],
             [
                 'name' => 'Seminario Educativo',
@@ -51,6 +53,8 @@ class EventSeeder extends Seeder
                 'available_tickets' => 80,
                 'description' => 'Un seminario educativo su temi attuali e importanti.',
                 'img' => 'https://asvis.it/public/asvis2/images/Notizie_2023/PattoEdu1Cov.jpeg',
+                'user_id' =>2, 
+                
                 
             ],
             [
@@ -59,6 +63,8 @@ class EventSeeder extends Seeder
                 'available_tickets' => 160,
                 'description' => 'Un emozionante spettacolo teatrale con una storia coinvolgente.',
                 'img' => 'https://media.istockphoto.com/id/1288910371/it/video/scatto-cinematografico-del-teatro-classico-vuoto-con-tende-di-velluto-rosso-che-aprono-il.jpg?s=640x640&k=20&c=sgE8NWHEsgZFWr-haOzCBjCjLAHgH02G6c3szUnnTzY=',
+                'user_id' =>1, 
+                
             ],
         ];
         foreach ($eventi as $evento) {
