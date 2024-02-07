@@ -28,7 +28,7 @@ class StoreEventRequest extends FormRequest
                 "description"  => ["required", "min:5", "max:300"],
                 "img"=> ["required", "min:5", "max:100"],
                 "user_id"=>["nullable", "exists:users,id"],
-                "tags" => ["exists:tags,id"],
+                "tags" => ["nullable"],
 
             ];
         

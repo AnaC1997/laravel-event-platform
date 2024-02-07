@@ -79,7 +79,7 @@
                 <div class="mb-3">
                     <label for="tags" class="form-label">seleziona il tipo di evento</label>
                     <select multiple name="tags[]" id="tags" class="form-select">
-                        <option selected value="">seleziona almeno un tipo</option>
+                        <option selected value="">Nessuno</option>
                         @foreach ($tags as $tag)
                             <option value="{{ $tag->id }}">{{ $tag->name }}</option>
                         @endforeach
