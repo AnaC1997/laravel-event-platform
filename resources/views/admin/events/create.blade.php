@@ -64,6 +64,28 @@
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
+
+                <div class="mb-3">
+                    <label for="user_id" class="form-label">Encaricato dell'evento</label>
+                    <select name="user_id" id="user_id" class="form-select form-select-sm" aria-label="Small select example" >
+                        <option selected value="">seleziona la persona incaricata dell'evento</option>
+                        @foreach($users as $user)
+                        <option value="{{ $user->id }}"> {{ $user->name }}</option>
+                      </select>
+                      @endforeach
+                </div>
+
+                <div class="mb-3">
+                    <label for="tags" class="form-label">seleziona il tipo di evento</label>
+                    <select multiple name="tags[]" id="tags" class="form-select">
+                        <option selected value="">seleziona almeno un tipo</option>
+                        @foreach ($tags as $tag)
+                            <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                
                 <button type="submit" class="btn btn-primary">Inserisci</button>
             </form>
 

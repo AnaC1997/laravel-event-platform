@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreEventRequest;
 use App\Http\Requests\UpdateEventRequest;
 use App\Models\Event;
+use App\Models\Tag;
+use App\Models\User;
 
 
 class EventController extends Controller
@@ -15,7 +17,9 @@ class EventController extends Controller
     public function index()
     {
         $events = Event::all();
-        return view("admin.events.index", compact("events"));
+        $tags = Tag::all();
+
+        return view("admin.events.index", compact("events", "tags"));
     }
 
     /**
@@ -23,7 +27,11 @@ class EventController extends Controller
      */
     public function create()
     {
-        return view("admin.events.create");
+
+       
+        $users = User::all();
+        $tags= Tag::all();
+        return view("admin.events.create", compact( "users", "tags"));
     }
 
     /**
@@ -36,6 +44,14 @@ class EventController extends Controller
         //i dati devono essere popolati nel model
         $newEvent->fill($validati);
         $newEvent->save();
+       
+
+        //Salva i tags in caso di essere presenti nel form
+        if ($request->tags) {
+            $newEvent->tags()->attach($request->tags);
+        }
+       
+ 
 
         return redirect()->route("admin.events.index");
 
@@ -54,20 +70,29 @@ class EventController extends Controller
      */
     public function edit(Event $event)
     {
-        return view("admin.events.edit", compact("event"));
+        $users = User::all();
+        $tags= Tag::all();
+
+        return view("admin.events.edit", compact("event", "users", "tags"));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateEventRequest $request, Event $event)
+    public function update(StoreEventRequest $request, Event $event)
     {
         $data = $request->all();
         $dati_validati =  new Event();
         $dati_validati->fill($data);
         $event->update($data);
+//
+       if ($request->filled("tags")) {
+            $data["tags"] = array_filter($data["tags"]) ? $data["tags"] : [];  
+            $event->tags()->sync($data["tags"]);
+        }
 
-        return redirect()->route("admin.events.index", $event->id);
+
+        return redirect()->route("admin.events.index");
     }
 
     /**

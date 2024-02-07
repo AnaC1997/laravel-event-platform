@@ -24,9 +24,12 @@ class StoreEventRequest extends FormRequest
         return [
                 "name" => ["required", "min:5", "max:50"],
                 "date" => ["required", "date"],
-                "available_tickets"  => ["required", "min:5", "max:100"],
+                "available_tickets"  => ["required", "min:1", "max:100"],
                 "description"  => ["required", "min:5", "max:300"],
                 "img"=> ["required", "min:5", "max:100"],
+                "user_id"=>["nullable", "exists:users,id"],
+                "tags" => ["exists:tags,id"],
+
             ];
         
     }
