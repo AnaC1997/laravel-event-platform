@@ -13,8 +13,8 @@
             </div>
             <div class="col-6">
                 <h2>{{ $event->name }}</h2>
-                <p>{{ $pasta->description }}</p>
-                <p>{{ $pasta->date }}</p>
+                <p>{{ $event->description }}</p>
+                <p>{{ $event->date }}</p>
             </div>
         </div>
     </div>
