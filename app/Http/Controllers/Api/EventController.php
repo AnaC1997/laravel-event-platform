@@ -10,7 +10,7 @@ class EventController extends Controller
 {
     public function index(){
 
-        $results = Event::all();
+        $results = Event::with("user")->get;
 
         $data=[
             "success" => true,
@@ -20,5 +20,20 @@ class EventController extends Controller
         return response()->json($data);
     }
 
+    
+
+
+    public function show($event){
+
+        $event = Event::with("user")->find($event);
+
+    $data = [
+        "success" => $event ? true : false,
+        "payload" => $event ? $event :"Nessun evento corrisponde all'id",
+    ];
+        return response()->json($data);
     }
+
+    }
+   
    
