@@ -23,14 +23,20 @@ class EventController extends Controller
     
 
 
-    public function show($event){
+    public function show($eventId){
 
-        $event = Event::with("user")->find($event);
-
-    $data = [
-        "success" => $event ? true : false,
-        "payload" => $event ? $event :"Nessun evento corrisponde all'id",
-    ];
+        $event = Event::with(['user', 'tags'])->find($eventId);
+        if ($event) {
+            $data = [
+                "success" => true,
+                "payload" => $event,
+            ];
+        } else {
+            $data = [
+                "success" => false,
+                "payload" => "Nessun evento corrisponde all'id: $eventId",
+            ];
+        }
         return response()->json($data);
     }
 
