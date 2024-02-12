@@ -24,3 +24,4 @@ Route::get("/events", [EventController::class,"index"]);
 Route::get("/events/{event}", [EventController::class,"show"]);
 
 Route::get("/tags", [TagController::class,"index"]);
+Route::get("/tags/{tag}", [TagController::class,"show"]);
