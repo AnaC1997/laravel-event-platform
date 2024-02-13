@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateEventRequest;
 use App\Models\Event;
 use App\Models\Tag;
 use App\Models\User;
+use Illuminate\Support\Facades\Storage;
 
 
 class EventController extends Controller
@@ -40,6 +41,9 @@ class EventController extends Controller
     public function store(StoreEventRequest $request)
     {
         $validati = $request->validated();
+        $percorso = Storage::disk("public")->put('/uploads', $request['img']);
+        $validati ["img"] = $percorso;
+
         $newEvent = new Event();
         //i dati devono essere popolati nel model
         $newEvent->fill($validati);
@@ -79,16 +83,30 @@ class EventController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(StoreEventRequest $request, Event $event)
+    public function update(UpdateEventRequest $request, Event $event)
     {
-        $data = $request->all();
-        $dati_validati =  new Event();
-        $dati_validati->fill($data);
-        $event->update($data);
+        $dati_validati = $request->validated();
+        if($request->hasFile("img")){
+
+            if ($event ->img){
+
+                Storage::disk("public")->delete($event->img);
+
+            }
+            $percorso = Storage::disk("public")->put('/uploads', $request['img']);
+            $dati_validati ["img"] = $percorso;
+
+        }
+       
+       
+        
+
+
+        $event->update($dati_validati);
 //
        if ($request->filled("tags")) {
-            $data["tags"] = array_filter($data["tags"]) ? $data["tags"] : [];  
-            $event->tags()->sync($data["tags"]);
+            $dati_validati["tags"] = array_filter($dati_validati["tags"]) ? $dati_validati["tags"] : [];  
+            $event->tags()->sync($dati_validati["tags"]);
         }
 
 

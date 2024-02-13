@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\File;
 
 class UpdateEventRequest extends FormRequest
 {
@@ -22,7 +23,14 @@ class UpdateEventRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            "name" => ["required", "min:5", "max:50"],
+            "date" => ["required", "date"],
+            "available_tickets"  => ["required", "min:1", "max:100"],
+            "description"  => ["required", "min:5", "max:300"],
+            "img"=> [ File::image()->min("1kb")->max("2mb")],
+            "user_id"=>["nullable", "exists:users,id"],
+            "tags" => ["nullable"],
+
         ];
     }
 }

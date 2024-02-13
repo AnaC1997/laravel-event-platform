@@ -16,7 +16,7 @@
 
         <div class="row">
             <h2 class="mt-3 text-center">Modifica evento</h2>
-            <form action="{{ route('admin.events.update', $event->id) }}" method="POST">
+            <form action="{{ route('admin.events.update', $event->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf <!--Token-->
                 @method('PUT')
                 <div class="mb-3">
@@ -59,7 +59,7 @@
 
                 <div class="mb-3">
                     <label for="img" class="form-label">Imagen del evento</label>
-                    <input type="text" class="form-control @error('img') is-invalid @enderror" id="img"
+                    <input type="file" class="form-control @error('img') is-invalid @enderror" id="img"
                         name="img" placeholder="Inserisci l'immagine dell'evento" value="{{ old('img')  ?? $event->img }}">
                     @error('img')
                         <div class="invalid-feedback">{{ $message }}</div>

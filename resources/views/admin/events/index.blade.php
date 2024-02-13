@@ -7,7 +7,7 @@
                 @foreach ($events as $event)
                     <div class="col">
                         <div class="card" style="width: 18rem;">
-                            <img src="{{ $event->img }}" class="card-img-top" alt="{{ $event->name }}">
+                            <img src="{{asset("storage/".$event->img)}}" class="card-img-top" alt="{{ $event->name }}">
                             <div class="card-body">
                                 <h5 class="card-title"><strong>{{ $event->name }}</strong> </h5>
                                 <p class="card-text">{{ $event->description }}</p>

@@ -16,7 +16,7 @@
 
         <div class="row">
             <h2 class="mt-3 text-center">Inserisci un evento</h2>
-            <form action="{{ route('admin.events.store') }}" method="POST">
+            <form action="{{ route('admin.events.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf <!--Token-->
                 <div class="mb-3">
                     <label for="name" class="form-label">Nome evento</label>
@@ -58,7 +58,7 @@
 
                 <div class="mb-3">
                     <label for="img" class="form-label">Imagen del evento</label>
-                    <input type="text" class="form-control @error('img') is-invalid @enderror" id="img"
+                    <input type="file" class="form-control @error('img') is-invalid @enderror" id="img"
                         name="img" placeholder="Inserisci l'immagine dell'evento" value="{{ old('img') }}">
                     @error('img')
                         <div class="invalid-feedback">{{ $message }}</div>

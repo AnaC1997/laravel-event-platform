@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\File;
 
 class StoreEventRequest extends FormRequest
 {
@@ -26,7 +27,7 @@ class StoreEventRequest extends FormRequest
                 "date" => ["required", "date"],
                 "available_tickets"  => ["required", "min:1", "max:100"],
                 "description"  => ["required", "min:5", "max:300"],
-                "img"=> ["required", "min:5", "max:100"],
+                "img"=> ["required",File::image()->min("1kb")->max("2mb")],
                 "user_id"=>["nullable", "exists:users,id"],
                 "tags" => ["nullable"],
 
